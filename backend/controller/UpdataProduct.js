@@ -1,7 +1,7 @@
 // controller/UpdataProduct.js
 const ProductModel = require("../models/productModel");
 
-async function UpdataProduct(req, res) {
+async function updataProduct(req, res) {
     try {
         const { id } = req.params;
         const updateData = req.body;
@@ -22,4 +22,4 @@ async function UpdataProduct(req, res) {
     }
 }
 
-module.exports = UpdataProduct;
+module.exports = updataProduct;

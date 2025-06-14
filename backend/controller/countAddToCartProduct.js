@@ -1,6 +1,6 @@
 const addToCartModel = require("../models/addToCartModel");
 
-const CountAddToCartProduct = async (req , res)=>{
+const countAddToCartProduct = async (req , res)=>{
     try{
         const userId = req.userId
 
@@ -23,5 +23,5 @@ const CountAddToCartProduct = async (req , res)=>{
         });
     }
 }
-
-module.exports = CountAddToCartProduct;
+ 
+module.exports = countAddToCartProduct;
