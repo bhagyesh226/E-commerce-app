@@ -1,6 +1,6 @@
 const addToCartModel = require("../models/addToCartModel");
 
-const addToCartViewProduct =async(req,res)=>{
+const addToCartViewPriduct =async(req,res)=>{
     try{
 
         const currentUser  = req.userId
@@ -22,4 +22,4 @@ const addToCartViewProduct =async(req,res)=>{
     }
 }
 
-module.exports = addToCartViewProduct;
+module.exports = addToCartViewPriduct;

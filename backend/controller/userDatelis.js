@@ -1,6 +1,6 @@
 const UserModel = require("../models/userModel")
 
-async function userDatalis(req,res){
+async function userDatelis(req,res){
     try{
 
 const user = await UserModel.findById(req.userId)
@@ -22,4 +22,4 @@ res.status(200).json({
     }
 }
 
-module.exports = userDatalis
+module.exports = userDatelis

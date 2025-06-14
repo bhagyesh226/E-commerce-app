@@ -1,6 +1,6 @@
 const addToCartModel = require("../models/addToCartModel");
 
-const addToCartProduct = async (req, res) => {
+const addToCartProsuct = async (req, res) => {
   try {
     const { productId } = req.body;
     const currentUser = req.userId; 
@@ -43,4 +43,4 @@ const addToCartProduct = async (req, res) => {
   }
 };
 
-module.exports = addToCartProduct;
+module.exports = addToCartProsuct;
