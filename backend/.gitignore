@@ -1,3 +1,5 @@
+node_modules/
+dist/
+build/
 .env
-mode_modules
-dist
+.DS_Store
