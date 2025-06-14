@@ -18,7 +18,7 @@ const updataAddToCartProduct = require('../controller/updataAddToCartPeoduct.js'
 const deleteAddToCartProduct = require('../controller/deleteAddToCartProduct.js');
 const searchProductData = require('../controller/searchProductData.js');
 const countAddToCartProduct = require('../controller/countAddToCartProduct.js');
-const updataProduct = require('../controller/updataProduct.js');
+const updataProduct = require('../controller/UpdataProduct.js');
 
 
 router.post('/signup', userSignup);
