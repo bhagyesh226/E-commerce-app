@@ -1,7 +1,6 @@
 
 
-// const backenDomin = "http://localhost:8080" ;
-const backenDomin = import.meta.env.VITE_BACKEND_URL;
+const backenDomin = "http://localhost:8080" ;
 
 
 const summaryApi = {
