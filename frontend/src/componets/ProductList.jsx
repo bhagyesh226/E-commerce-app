@@ -65,11 +65,21 @@ function ProductList() {
 
                         {/* Edit Icon (Shown on Hover) */}
                         <div
-                            className="absolute bottom-2 right-2 bg-white border p-1 rounded-full shadow-md hidden group-hover:block cursor-pointer hover:bg-gray-100"
+                            className="absolute bottom-2 right-2 bg-white border p-1 rounded-full shadow-md 
+             md:hidden block cursor-pointer hover:bg-gray-100"
                             onClick={() => setEditProduct(product)}
                         >
                             <MdEdit size={20} />
                         </div>
+
+                        <div
+                            className="absolute bottom-2 right-2 bg-white border p-1 rounded-full shadow-md 
+             hidden md:group-hover:block cursor-pointer hover:bg-gray-100"
+                            onClick={() => setEditProduct(product)}
+                        >
+                            <MdEdit size={20} />
+                        </div>
+
                     </div>
                 ))
             )}

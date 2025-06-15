@@ -1,34 +1,32 @@
-import React, { useContext, useEffect, useState } from 'react'
-import summaryApi from '../../apiStore/api'
+import React, { useContext, useEffect, useState } from 'react';
+import summaryApi from '../../apiStore/api';
 import { MdDeleteForever } from "react-icons/md";
 import { toast } from 'react-toastify';
 import Context from '../context';
 import { Link } from 'react-router-dom';
 
 function CartProduct() {
-  const [data, setData] = useState([])
-  const [loading, setLoading] = useState(false)
-  const context = useContext(Context)
-
-  
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const context = useContext(Context);
 
   const fatchData = async () => {
-    setLoading(true)
+    setLoading(true);
     const response = await fetch(summaryApi.addToCartViewProduct.url, {
       method: summaryApi.addToCartViewProduct.method,
       headers: summaryApi.addToCartViewProduct.headers,
       credentials: 'include',
-    })
-    setLoading(false)
-    const dataApi = await response.json()
+    });
+    setLoading(false);
+    const dataApi = await response.json();
     if (dataApi.success) {
-      setData(dataApi.data)
+      setData(dataApi.data);
     }
-  }
+  };
 
   useEffect(() => {
     fatchData();
-  }, [])
+  }, []);
 
   const increaseQty = async (id, qty) => {
     const response = await fetch(summaryApi.updataAddToCartProduct.url, {
@@ -83,9 +81,9 @@ function CartProduct() {
 
       <div className="flex flex-col lg:flex-row gap-10 lg:justify-between">
         {/* View Cart Items */}
-        <div className="w-full   max-w-3xl">
+        <div className="w-full max-w-3xl">
           {loading ? (
-            <div className="space-y-4 ">
+            <div className="space-y-4">
               {[1, 2, 3].map((_, i) => (
                 <div key={i} className="flex gap-4 items-center animate-pulse bg-gray-200 rounded p-4">
                   <div className="w-20 h-20 bg-gray-300 rounded" />
@@ -102,7 +100,7 @@ function CartProduct() {
                 key={product?._id + 'add-to-cart'}
                 className="flex gap-4 items-center bg-blue-50 border rounded-lg shadow-sm p-4 my-2"
               >
-                <Link to={'/ProductDetails/' + product.productId?._id} className="w-24 bg-blue-50 rounded h-24" >
+                <Link to={'/ProductDetails/' + product.productId?._id} className="w-24 bg-blue-50 rounded h-24">
                   {product.productId?.image?.[0] ? (
                     <img
                       src={product.productId.image[0]}
@@ -117,10 +115,18 @@ function CartProduct() {
                 </Link>
 
                 <div className="flex-1 group relative">
+                  {/* Always show on mobile */}
                   <MdDeleteForever
-                    className="absolute top-1 right-1 text-red-500 hidden text-xl cursor-pointer group-hover:block hover:text-red-700"
+                    className="absolute top-1 right-1 text-red-500 text-xl cursor-pointer md:hidden block hover:text-red-700"
                     onClick={() => deleteCartProduct(product?._id)}
                   />
+
+                  {/* Show on hover for desktop */}
+                  <MdDeleteForever
+                    className="absolute top-1 right-1 text-red-500 hidden md:group-hover:block text-xl cursor-pointer hover:text-red-700"
+                    onClick={() => deleteCartProduct(product?._id)}
+                  />
+
                   <p className="font-semibold text-gray-800 mb-1">
                     {(product?.productId?.name || 'Unnamed Product').slice(0, 40)}
                     {product?.productId?.name?.length > 40 && '...'}
@@ -135,7 +141,7 @@ function CartProduct() {
                   <div className="flex items-center gap-2">
                     <p className="text-sm text-gray-600">Qty:</p>
                     <button
-                      className=" h-8 w-6 border border-red-500 text-red-600 bg-transparent hover:bg-red-600 hover:text-white rounded shadow transition duration-200"
+                      className="h-8 w-6 border border-red-500 text-red-600 bg-transparent hover:bg-red-600 hover:text-white rounded shadow transition duration-200"
                       onClick={() => decraseQty(product._id, product.quantity)}
                     >−</button>
                     <span className="text-sm font-semibold">{product.quantity}</span>
@@ -170,7 +176,7 @@ function CartProduct() {
           </div>
           <div className="flex justify-center mt-6">
             <button
-              className="bg-green-500 w-full  hover:bg-green-600 text-white font-semibold py-2 px-6 rounded shadow-md transition duration-200"
+              className="bg-green-500 w-full hover:bg-green-600 text-white font-semibold py-2 px-6 rounded shadow-md transition duration-200"
             >
               Payment
             </button>
@@ -178,7 +184,7 @@ function CartProduct() {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-export default CartProduct
+export default CartProduct;
