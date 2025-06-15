@@ -1,6 +1,7 @@
 
 
-const backenDomin = import.meta.env.VITE_BACKEND_LIVE_API ;
+// const backenDomin = "http://localhost:8080" ;
+const backenDomin = import.meta.env.VITE_BACKEND_LIVE_API; 
 
 const summaryApi = {
     signUp: {

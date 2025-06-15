@@ -7,27 +7,17 @@ const router = require('./routes');
 
 const app = express();
 
-// ✅ Allow both local + Vercel frontend
-const allowedOrigins = [
-  process.env.F_URL,
-  process.env.F_LIVE_URL
-];
+
 
 app.use(cors({
-  origin: function (origin, callback) {
-    if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error('CORS Not Allowed: ' + origin));
-    }
-  },
-  credentials: true
-}));
+    origin : process.env.F_URL,
+    credentials : true
+}))
 
 app.use(cookieParser());
 app.use(express.json());
 
-// ✅ All routes prefixed with /api
+
 app.use('/api', router);
 
 const PORT = process.env.PORT || 8080;
