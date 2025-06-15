@@ -8,7 +8,7 @@ function Footer() {
       <div className="container mx-auto px-4 py-6 flex flex-col md:flex-row justify-between items-center gap-4">
         <div className="text-center md:text-left">
           <h3 className="text-lg font-semibold">ShivShaktiStore</h3>
-          <p className="text-sm">&copy; {new Date().getFullYear()} All rights reserved.</p>
+          <p className="text-sm">&copy; {new Date().getFullYear()} All rights reserved</p>
         </div>
 
         <div className="flex gap-4">

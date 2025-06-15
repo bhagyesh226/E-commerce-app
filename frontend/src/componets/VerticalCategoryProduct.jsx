@@ -90,7 +90,7 @@ function VerticalCategoryProduct({ category, heading }) {
 
                                 <button className='mt-3 w-full h-9 rounded-md bg-blue-200 hover:bg-blue-400 text-sm font-medium'
                                 onClick={(e)=>handleAddToCaet(e,product._id )}> 
-                                    Add to cart
+                                    Add To Cart
                                 </button>
                             </div>
                         ))}
