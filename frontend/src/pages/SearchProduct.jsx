@@ -25,7 +25,8 @@ function SearchProduct() {
     try {
       const res = await fetch(`${summaryApi.searchProductData.url}?q=${searchQuery}`, {
         method: summaryApi.searchProductData.method,
-        headers: summaryApi.searchProductData.headers
+        headers: summaryApi.searchProductData.headers,
+        credentials: "include"
       });
       setLoading(false)
 

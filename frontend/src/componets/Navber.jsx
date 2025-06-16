@@ -18,11 +18,15 @@ function Navbar() {
   const navigate = useNavigate();
   const context = useContext(Context)
 
+
+
+  console.log("User from context:", user); // Add this
+
   const handleLogout = async () => {
     const res = await fetch(summaryApi.user_Louout.url, {
       method: summaryApi.user_Louout.method,
       credentials: 'include',
-    });
+    })
 
     const data = await res.json();
 
@@ -43,6 +47,7 @@ function Navbar() {
     }
   };
 
+  console.log("user id",user?._id)
 
   const handleSearch = (e) => {
     const { value } = e.target

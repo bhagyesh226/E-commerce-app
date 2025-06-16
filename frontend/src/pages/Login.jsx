@@ -12,15 +12,15 @@ function Login() {
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-     const navigate = useNavigate();
-     const {fetchUserDetails , feachUserAddtoCart} = useContext(Context)
+  const navigate = useNavigate();
+  const { fetchUserDetails, feachUserAddtoCart } = useContext(Context)
 
   const handleSubmit = async (e) => {
     e.preventDefault(); // prevent page reload
-    const dataresponse = await fetch(summaryApi.signin.url ,{
-      method:summaryApi.signin.method,
-      credentials:"include",
-      headers:summaryApi.signin.headers,
+    const dataresponse = await fetch(summaryApi.signin.url, {
+      method: summaryApi.signin.method,
+      credentials: "include",
+      headers: summaryApi.signin.headers,
       body: JSON.stringify({
         email: email,
         password: password
@@ -29,36 +29,37 @@ function Login() {
 
     const dtaapi = await dataresponse.json()
 
-    if(dtaapi.success){
-      toast.success(dtaapi.message,{
-        
+
+
+    if (dtaapi.success) {
+      toast.success(dtaapi.message, {
+
         position: "top-right",
         autoClose: 2000,
         theme: "dark"
       })
       setEmail(''); // Reset email
-    setPassword(''); // Reset password
- 
-    setTimeout(() => {
+      setPassword(''); // Reset password
+
+      await fetchUserDetails();      // ✅ await these
+      await feachUserAddtoCart();
+
+      setTimeout(() => {
         navigate('/');
       }, 2000);
-         fetchUserDetails(),
-         feachUserAddtoCart()
+      // fetchUserDetails(),
+      //   feachUserAddtoCart()
     }
 
-    if (dtaapi.error){
-      toast.error(dtaapi.message,{
-        
+    if (dtaapi.error) {
+      toast.error(dtaapi.message, {
+
         position: "top-right",
         autoClose: 2000,
         theme: "dark"
       })
     }
-    // Here you can add your API call or login logic
 
-    // Reset form (optional)
-    // setEmail('');
-    // setPassword('');
   };
 
   return (

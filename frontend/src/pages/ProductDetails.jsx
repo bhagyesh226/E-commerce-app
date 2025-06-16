@@ -36,6 +36,7 @@ function ProductDetails() {
     const response = await fetch(summaryApi.getProductDateils.url, {
       method: summaryApi.getProductDateils.method,
       headers: summaryApi.getProductDateils.headers,
+      credentials: "include",
       body: JSON.stringify({ productId: params?.id })
     });
     const dataResponse = await response.json();

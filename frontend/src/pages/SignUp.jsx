@@ -41,6 +41,7 @@ function SignUp() {
     const response = await fetch(summaryApi.signUp.url, {
       method: summaryApi.signUp.method,
       headers: summaryApi.signUp.headers,
+      credentials: "include",
       body: JSON.stringify({
         name: fullName,
         email: email,

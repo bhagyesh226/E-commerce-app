@@ -11,6 +11,7 @@ function CategoryList() {
     const response = await fetch(summaryApi.categoryProduct.url, {
       method: summaryApi.categoryProduct.method,
       headers: summaryApi.categoryProduct.headers,
+      credentials: "include",
     });
     const dataresponse = await response.json();
     setLoading(false);
