@@ -34,8 +34,8 @@ router.get('/get-categoryProduct',  getcategoryProduct);
 router.post('/get-CategoryWiseProduct',getCategoryWiseProduct)
 router.post('/get-ProductDateils',getProductDateils)
 router.post('/addToCartProduct',authtoken,addToCartProsuct)
-router.get('/CountAddToCartProduct',countAddToCartProduct ) // iiiiiiiiiiiiiiiiiiiiiiiiiiiii
-router.get('/addToCartViewProduct',addToCartViewPriduct)    //iiiiiiiiiiiiiiiiiiiiiiiiiiiii
+router.get('/CountAddToCartProduct',authtoken,countAddToCartProduct ) 
+router.get('/addToCartViewProduct',authtoken,addToCartViewPriduct)   
 router.post('/updataAddToCartProduct',authtoken,updataAddToCartPeoduct)
 router.post('/deleteAddToCartProduct',authtoken,deleteAddToCartProduct)
 router.get('/searchProductData',searchProductData)

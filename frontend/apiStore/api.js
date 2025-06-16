@@ -1,7 +1,7 @@
 
 
-// const backenDomin = "http://localhost:8080" ;
-const backenDomin =  import.meta.env.VITE_B_LIVE_URL ;
+const backenDomin = "http://localhost:8080" ;
+// const backenDomin =  import.meta.env.VITE_B_LIVE_URL ;
 
 console.log("Backend URL:", import.meta.env.VITE_B_LIVE_URL);
 const summaryApi = {
