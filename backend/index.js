@@ -10,7 +10,7 @@ const app = express();
 
 
 app.use(cors({
-    origin : process.env.F_URL,
+    origin : "https://vercel.com/bhagyesh226s-projects",
     credentials : true
 }))
 
