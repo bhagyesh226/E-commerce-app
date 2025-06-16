@@ -10,7 +10,7 @@ const app = express();
 
 
 app.use(cors({
-    origin : "https://e-commerce-app-umber-pi.vercel.app",
+    origin : process.env.F_URL,
     credentials : true
 }))
 
