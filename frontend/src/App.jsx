@@ -39,9 +39,7 @@ function App() {
       credentials: 'include'
     })
     const dataapi = await response.json();
-    setCartProductCount(dataapi?.data.count)
-
-    
+    setCartProductCount(dataapi?.data?.count)
 
   }
 

@@ -32,7 +32,7 @@ async function authtoken(req, res, next) {
         res.status(400).json({
             message: err.message || err,
             error: true,
-            succss: false,
+            success: false,
             data: []
         })
     }
