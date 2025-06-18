@@ -157,7 +157,7 @@ function CartProduct() {
         </div>
 
         {/* Price Summary */}
-        <div className="mt-5 lg:mt-0 w-full max-w-sm bg-yellow-50 p-5 h-fit rounded shadow-md">
+        <div className="mt-5 fixed right-15 top-16 lg:mt-0 w-full max-w-sm bg-yellow-50 p-5 h-fit rounded shadow-md">
           <h3 className="text-xl font-semibold mb-3 text-center">Cart Summary</h3>
           <div className="space-y-2 max-h-80 overflow-y-auto pr-2">
             {data.map((product, index) => (
