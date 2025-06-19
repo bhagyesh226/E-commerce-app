@@ -1,6 +1,8 @@
 
 
-const backenDomin = "http://localhost:8080" ;
+// const backenDomin = "http://localhost:8080" ;
+const backenDomin = import.meta.env.VITE_B_LIVE_URL;
+
 
 
 
@@ -47,7 +49,7 @@ const summaryApi = {
         }
     },
     updateUserRole: {
-        url: `${backenDomin}/api//update-role/:id`,
+        url: `${backenDomin}/api/update-role/:id`,
         method: "POST",
         headers: {
             "Content-Type": "application/json"

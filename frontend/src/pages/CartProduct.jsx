@@ -120,6 +120,7 @@ function CartProduct() {
                     className="absolute top-1 right-1 text-red-500 text-xl cursor-pointer md:hidden block hover:text-red-700"
                     onClick={() => deleteCartProduct(product?._id)}
                   />
+                  
 
                   {/* Show on hover for desktop */}
                   <MdDeleteForever

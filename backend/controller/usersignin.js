@@ -33,9 +33,10 @@ async function userSignin(req, res) {
                 process.env.JWT_TOKEN, { expiresIn: "1d" });
             const tokenOption = {
                 httpOnly: true,
-                secure: true,
-                 maxAge: 24 * 60 * 60 * 1000  // 1 day
-            }
+                secure: true,           
+                sameSite: 'None',      
+                maxAge: 24 * 60 * 60 * 1000
+            };
             res.cookie("token", token, tokenOption).status(200).json({
                 message: ("Login successfully"),
                 data: token,
