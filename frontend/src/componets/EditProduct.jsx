@@ -11,11 +11,6 @@ import { toast } from 'react-toastify';
 function EditProduct({ product, onClose }) {
     const navigate = useNavigate();
 
-    // const goback = () => {
-    //     navigate('/account');
-    // };
-
-
     const [data, setData] = React.useState({
         name: product?.name || '',
         brands: product?.brands || '',
@@ -80,7 +75,7 @@ function EditProduct({ product, onClose }) {
         }
 
         if (responseData.error) {
-            toast.success(responseData.message, {
+            toast.error(responseData.message, {
                 position: "top-right",
                 autoClose: 2000,
                 theme: "dark"
