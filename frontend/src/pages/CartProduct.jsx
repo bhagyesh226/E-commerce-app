@@ -10,6 +10,14 @@ function CartProduct() {
   const [loading, setLoading] = useState(false);
   const context = useContext(Context);
 
+  const Payment = () => {
+    toast.error("Payments not implemented yet!", {
+      position: "top-right",
+      autoClose: 2000,
+      theme: "dark"
+    });
+  };
+
   const fatchData = async () => {
     setLoading(true);
     const response = await fetch(summaryApi.addToCartViewProduct.url, {
@@ -115,16 +123,8 @@ function CartProduct() {
                 </Link>
 
                 <div className="flex-1 group relative">
-                  {/* Always show on mobile */}
                   <MdDeleteForever
-                    className="absolute top-1 right-1 text-red-500 text-xl cursor-pointer md:hidden block hover:text-red-700"
-                    onClick={() => deleteCartProduct(product?._id)}
-                  />
-                  
-
-                  {/* Show on hover for desktop */}
-                  <MdDeleteForever
-                    className="absolute top-1 right-1 text-red-500 hidden md:group-hover:block text-xl cursor-pointer hover:text-red-700"
+                    className="absolute top-1 right-1 text-red-500 text-xl cursor-pointer hover:text-red-700"
                     onClick={() => deleteCartProduct(product?._id)}
                   />
 
@@ -158,7 +158,7 @@ function CartProduct() {
         </div>
 
         {/* Price Summary */}
-        <div className="mt-5  right-15 top-16 lg:mt-0 w-full max-w-sm bg-yellow-50 p-5 h-fit rounded shadow-md">
+        <div className="mt-5 right-15 top-16 lg:mt-0 w-full max-w-sm bg-yellow-50 p-5 h-fit rounded shadow-md">
           <h3 className="text-xl font-semibold mb-3 text-center">Cart Summary</h3>
           <div className="space-y-2 max-h-80 overflow-y-auto pr-2">
             {data.map((product, index) => (
@@ -177,6 +177,7 @@ function CartProduct() {
           </div>
           <div className="flex justify-center mt-6">
             <button
+              onClick={Payment}
               className="bg-green-500 w-full hover:bg-green-600 text-white font-semibold py-2 px-6 rounded shadow-md transition duration-200"
             >
               Payment
