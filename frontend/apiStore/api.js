@@ -23,7 +23,7 @@ const summaryApi = {
 
         }
     },
-    current_user :{
+    current_user: {
 
         url: `${backenDomin}/api/user-data`,
         method: "GET",
@@ -32,7 +32,7 @@ const summaryApi = {
 
         }
     },
-    user_Louout:{
+    user_Louout: {
         url: `${backenDomin}/api/userLogout`,
         method: "GET",
         headers: {
@@ -71,13 +71,15 @@ const summaryApi = {
             "Content-Type": "application/json"
         }
     },
-     UpdataProduct: {
+    UpdataProduct: {
         url: `${backenDomin}/api/update-product/:id`,
         method: "PUT",
         headers: {
             "Content-Type": "application/json"
-        }
+        },
+        credentials: "include"
     },
+
     categoryProduct: {
         url: `${backenDomin}/api/get-categoryProduct`,
         method: "GET",
@@ -92,7 +94,7 @@ const summaryApi = {
             "Content-Type": "application/json"
         }
     },
-    getCategoryWiseProduct :{
+    getCategoryWiseProduct: {
         url: `${backenDomin}/api/get-CategoryWiseProduct`,
         method: "POST",
         headers: {
@@ -100,7 +102,7 @@ const summaryApi = {
 
         }
     },
-    addToCartProduct :{
+    addToCartProduct: {
         url: `${backenDomin}/api/addToCartProduct`,
         method: "POST",
         headers: {
@@ -127,7 +129,7 @@ const summaryApi = {
         }
 
     },
-    updataAddToCartProduct : {
+    updataAddToCartProduct: {
         url: `${backenDomin}/api/updataAddToCartProduct`,
         method: "POST",
         headers: {
@@ -136,7 +138,7 @@ const summaryApi = {
         }
 
     },
-     deleteAddToCartProduct : {
+    deleteAddToCartProduct: {
         url: `${backenDomin}/api/deleteAddToCartProduct`,
         method: "POST",
         headers: {
@@ -145,7 +147,7 @@ const summaryApi = {
         }
 
     },
-    searchProductData : {
+    searchProductData: {
         url: `${backenDomin}/api/searchProductData`,
         method: "GET",
         headers: {
@@ -154,7 +156,7 @@ const summaryApi = {
         }
 
     }
-    
+
 }
 
 

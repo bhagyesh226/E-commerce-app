@@ -7,6 +7,7 @@ import { MdDeleteForever } from "react-icons/md";
 import UplodeImage from '../../helper/UplodeImage';
 import DisplayImage from './DisplayImage';
 import { toast } from 'react-toastify';
+import summaryApi from '../../apiStore/api';
 
 function EditProduct({ product, onClose }) {
     const navigate = useNavigate();
@@ -51,14 +52,13 @@ function EditProduct({ product, onClose }) {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        const response = await fetch(`http://localhost:8080/api/update-product/${product._id}`, {
-            method: "PUT",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            credentials: 'include',
+        const response = await fetch(summaryApi.UpdataProduct.url.replace(":id", product._id), {
+            method: summaryApi.UpdataProduct.method,
+            headers: summaryApi.UpdataProduct.headers,
+            credentials: summaryApi.UpdataProduct.credentials,
             body: JSON.stringify(data)
         });
+
 
 
         const responseData = await response.json();
