@@ -37,7 +37,7 @@ router.post('/addToCartProduct',authtoken,addToCartProsuct);
 router.get('/CountAddToCartProduct',authtoken,countAddToCartProduct ); 
 router.get('/addToCartViewProduct',authtoken,addToCartViewPriduct);
 router.post('/updataAddToCartProduct',authtoken,updataAddToCartPeoduct);
-router.post('/deleteAddToCartProduct',authtoken,deleteAddToCartProduct);
+router.post('/deleteAddToCartProduct',authtoken,deleteAddToCartProduct)
 router.get('/searchProductData',searchProductData);
 
 
