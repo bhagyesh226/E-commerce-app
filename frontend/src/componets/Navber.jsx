@@ -20,7 +20,6 @@ function Navbar() {
 
 
 
-  console.log("User from context:", user); // Add this
 
   const handleLogout = async () => {
     const res = await fetch(summaryApi.user_Louout.url, {
@@ -46,8 +45,6 @@ function Navbar() {
       });
     }
   };
-
-  console.log("user id",user?._id)
 
   const handleSearch = (e) => {
     const { value } = e.target
