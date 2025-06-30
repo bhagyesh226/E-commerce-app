@@ -31,14 +31,14 @@ router.post('/upload-product', authtoken,uplodeProduct);
 router.get('/get-product',authtoken,getProduct);
 router.put('/update-product/:id', authtoken,updataProduct);
 router.get('/get-categoryProduct',  getcategoryProduct);
-router.post('/get-CategoryWiseProduct',getCategoryWiseProduct)
-router.post('/get-ProductDateils',getProductDateils)
-router.post('/addToCartProduct',authtoken,addToCartProsuct)
-router.get('/CountAddToCartProduct',authtoken,countAddToCartProduct ) 
-router.get('/addToCartViewProduct',authtoken,addToCartViewPriduct)   
-router.post('/updataAddToCartProduct',authtoken,updataAddToCartPeoduct)
-router.post('/deleteAddToCartProduct',authtoken,deleteAddToCartProduct)
-router.get('/searchProductData',searchProductData)
+router.post('/get-CategoryWiseProduct',getCategoryWiseProduct);
+router.post('/get-ProductDateils',getProductDateils);
+router.post('/addToCartProduct',authtoken,addToCartProsuct);
+router.get('/CountAddToCartProduct',authtoken,countAddToCartProduct ); 
+router.get('/addToCartViewProduct',authtoken,addToCartViewPriduct);
+router.post('/updataAddToCartProduct',authtoken,updataAddToCartPeoduct);
+router.post('/deleteAddToCartProduct',authtoken,deleteAddToCartProduct);
+router.get('/searchProductData',searchProductData);
 
 
 
