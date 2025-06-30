@@ -17,7 +17,6 @@ function Navbar() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const context = useContext(Context);
-
   const [menuOpen, setMenuOpen] = useState(false);
 
   const handleLogout = async () => {
@@ -35,6 +34,7 @@ function Navbar() {
     } else {
       toast.error(data.message || "Logout failed", { autoClose: 2000, theme: "dark" });
     }
+    setMenuOpen(false); // close menu after logout
   };
 
   const handleSearch = (e) => {
@@ -42,16 +42,26 @@ function Navbar() {
     navigate(value ? `/SearchProduct?q=${value}` : `/SearchProduct`);
   };
 
-  return (
-    <nav className="fixed top-0 left-0 w-full z-50 bg-green-100 shadow-md px-4 py-2 flex items-center justify-between">
-      {/* Logo */}
-      <Link to="/" className="flex items-center gap-2">
-        <img src={logo} alt="Logo" className="h-10 w-10 object-contain rounded-full" title="ShivShaktiStore" />
-        <span className="font-bold text-xl hidden sm:inline">ShivShakti</span>
-      </Link>
+  const handleLinkClick = () => setMenuOpen(false); // used in mobile nav links
 
-      {/* Search Bar - hidden on mobile */}
-      <div className="hidden md:flex items-center justify-center flex-1 mx-4 max-w-md relative">
+  return (
+    <nav className="fixed top-0 left-0 w-full z-50 bg-green-100 shadow-md px-4 py-2 flex flex-col md:flex-row md:items-center md:justify-between gap-2">
+      {/* Top Row: Logo + Menu */}
+      <div className="flex items-center justify-between w-full md:w-auto">
+        <Link to="/" className="flex items-center gap-2" onClick={handleLinkClick}>
+          <img src={logo} alt="Logo" className="h-10 w-10 object-contain rounded-full" />
+          <span className="font-bold text-xl hidden sm:inline">ShivShakti</span>
+        </Link>
+        <div className="md:hidden">
+          <button onClick={() => setMenuOpen(!menuOpen)} aria-label="Toggle menu">
+            {menuOpen ? <FiX size={24} /> : <FiMenu size={24} />}
+          </button>
+        </div>
+      </div>
+
+      {/* Search bar (always visible) */}
+      <div className="flex items-center justify-center w-full md:max-w-md relative">
+        <CiSearch className="absolute left-3 text-xl text-gray-500" />
         <input
           type="text"
           placeholder="Search products..."
@@ -59,22 +69,18 @@ function Navbar() {
           disabled={!user?._id}
           className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
-        <CiSearch className="absolute left-3 text-xl text-gray-500" />
       </div>
 
-      {/* Desktop Nav - hidden on mobile */}
+      {/* Desktop Nav */}
       <div className="hidden md:flex items-center gap-6">
         {user?._id ? (
           <>
-            {/* Account Icon - desktop only */}
             <Link
               to={user.role === userRole.ADMIN ? "/account" : "/UserPanel"}
               className="text-2xl text-gray-700 hover:text-blue-600"
             >
               <FaUserAlt />
             </Link>
-
-            {/* Cart Icon */}
             <Link
               to="/CartProduct"
               className="relative text-2xl text-gray-700 hover:text-blue-600"
@@ -84,8 +90,6 @@ function Navbar() {
                 {context?.cartProductCount}
               </div>
             </Link>
-
-            {/* Logout Button */}
             <button
               onClick={handleLogout}
               className="flex items-center gap-1 text-gray-700 hover:text-red-600"
@@ -100,16 +104,9 @@ function Navbar() {
         )}
       </div>
 
-      {/* Mobile Menu Toggle - visible on mobile only */}
-      <div className="md:hidden">
-        <button onClick={() => setMenuOpen(!menuOpen)} aria-label="Toggle menu">
-          {menuOpen ? <FiX size={24} /> : <FiMenu size={24} />}
-        </button>
-      </div>
-
-      {/* Mobile Nav Drawer - visible only when menuOpen and on mobile */}
+      {/* Mobile Nav Drawer */}
       {menuOpen && (
-        <div className="absolute top-full left-0 w-full bg-green-100 shadow-md flex flex-col p-4 gap-4 md:hidden z-50">
+        <div className="md:hidden bg-green-100 shadow-md flex flex-col p-4 gap-4">
           {user?._id && (
             <div className="flex items-center gap-4">
               <FaUserAlt className="text-xl" />
@@ -117,26 +114,19 @@ function Navbar() {
             </div>
           )}
 
-          <div className="flex items-center border px-3 py-2 rounded-full">
-            <CiSearch className="text-xl text-gray-500" />
-            <input
-              type="text"
-              placeholder="Search..."
-              onChange={handleSearch}
-              disabled={!user?._id}
-              className="flex-1 pl-2 outline-none bg-transparent"
-            />
-          </div>
-
           {user?._id ? (
             <>
-              <Link to="/CartProduct" className="flex items-center gap-2 text-gray-700">
+              <Link
+                to="/CartProduct"
+                onClick={handleLinkClick}
+                className="flex items-center gap-2 text-gray-700"
+              >
                 <IoCartOutline /> Cart ({context?.cartProductCount})
               </Link>
 
-              {/* Account Text Link ONLY in mobile drawer */}
               <Link
                 to={user.role === userRole.ADMIN ? "/account" : "/UserPanel"}
+                onClick={handleLinkClick}
                 className="text-gray-700"
               >
                 Account
@@ -147,7 +137,7 @@ function Navbar() {
               </button>
             </>
           ) : (
-            <Link to="/login" className="text-blue-600">
+            <Link to="/login" className="text-blue-600" onClick={handleLinkClick}>
               Login
             </Link>
           )}
