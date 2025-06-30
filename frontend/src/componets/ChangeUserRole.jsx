@@ -9,7 +9,7 @@ function ChangeUserRole({ user, onClose, onRoleUpdated }) {
 
   const handleUpdate = async () => {
     try {
-      const response = await fetch(`http://localhost:8080/api/update-role/${user._id}`, {
+      const response = await fetch(`${import.meta.env.VITE_B_LIVE_URL}/api/update-role/${user._id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json"
@@ -21,11 +21,11 @@ function ChangeUserRole({ user, onClose, onRoleUpdated }) {
       const data = await response.json();
 
       if (data.success) {
-        toast.success(data.message,{
-        position: "top-right",
-        autoClose: 2000,
-        theme: "dark"
-      })
+        toast.success(data.message, {
+          position: "top-right",
+          autoClose: 2000,
+          theme: "dark"
+        })
         onRoleUpdated(); // Refresh user list
         onClose(); // Close modal
       } else {
