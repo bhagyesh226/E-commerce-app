@@ -17,7 +17,6 @@ function Navbar() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const context = useContext(Context);
-
   const [menuOpen, setMenuOpen] = useState(false);
 
   const handleLogout = async () => {
@@ -35,6 +34,8 @@ function Navbar() {
     } else {
       toast.error(data.message || "Logout failed", { autoClose: 2000, theme: "dark" });
     }
+
+    setMenuOpen(false); // Close menu after logout
   };
 
   const handleSearch = (e) => {
@@ -45,7 +46,7 @@ function Navbar() {
   return (
     <nav className="fixed top-0 left-0 w-full z-50 bg-green-100 shadow-md px-4 py-2 flex items-center justify-between">
       {/* Logo */}
-      <Link to="/" className="flex items-center gap-2">
+      <Link to="/" className="flex items-center gap-2" onClick={() => setMenuOpen(false)}>
         <img src={logo} alt="Logo" className="h-10 w-10 object-contain rounded-full" title="ShivShaktiStore" />
         <span className="font-bold text-xl hidden sm:inline">ShivShakti</span>
       </Link>
@@ -62,19 +63,16 @@ function Navbar() {
         <CiSearch className="absolute left-3 text-xl text-gray-500" />
       </div>
 
-      {/* Desktop Nav - hidden on mobile */}
+      {/* Desktop Nav */}
       <div className="hidden md:flex items-center gap-6">
         {user?._id ? (
           <>
-            {/* Account Icon - desktop only */}
             <Link
               to={user.role === userRole.ADMIN ? "/account" : "/UserPanel"}
               className="text-2xl text-gray-700 hover:text-blue-600"
             >
               <FaUserAlt />
             </Link>
-
-            {/* Cart Icon */}
             <Link
               to="/CartProduct"
               className="relative text-2xl text-gray-700 hover:text-blue-600"
@@ -84,8 +82,6 @@ function Navbar() {
                 {context?.cartProductCount}
               </div>
             </Link>
-
-            {/* Logout Button */}
             <button
               onClick={handleLogout}
               className="flex items-center gap-1 text-gray-700 hover:text-red-600"
@@ -100,14 +96,14 @@ function Navbar() {
         )}
       </div>
 
-      {/* Mobile Menu Toggle - visible on mobile only */}
+      {/* Mobile Menu Toggle */}
       <div className="md:hidden">
         <button onClick={() => setMenuOpen(!menuOpen)} aria-label="Toggle menu">
           {menuOpen ? <FiX size={24} /> : <FiMenu size={24} />}
         </button>
       </div>
 
-      {/* Mobile Nav Drawer - visible only when menuOpen and on mobile */}
+      {/* Mobile Drawer */}
       {menuOpen && (
         <div className="absolute top-full left-0 w-full bg-green-100 shadow-md flex flex-col p-4 gap-4 md:hidden z-50">
           {user?._id && (
@@ -117,6 +113,7 @@ function Navbar() {
             </div>
           )}
 
+          {/* Mobile Search */}
           <div className="flex items-center border px-3 py-2 rounded-full">
             <CiSearch className="text-xl text-gray-500" />
             <input
@@ -130,14 +127,18 @@ function Navbar() {
 
           {user?._id ? (
             <>
-              <Link to="/CartProduct" className="flex items-center gap-2 text-gray-700">
+              <Link
+                to="/CartProduct"
+                onClick={() => setMenuOpen(false)}
+                className="flex items-center gap-2 text-gray-700"
+              >
                 <IoCartOutline /> Cart ({context?.cartProductCount})
               </Link>
 
-              {/* Account Text Link ONLY in mobile drawer */}
               <Link
                 to={user.role === userRole.ADMIN ? "/account" : "/UserPanel"}
                 className="text-gray-700"
+                onClick={() => setMenuOpen(false)}
               >
                 Account
               </Link>
@@ -147,7 +148,7 @@ function Navbar() {
               </button>
             </>
           ) : (
-            <Link to="/login" className="text-blue-600">
+            <Link to="/login" className="text-blue-600" onClick={() => setMenuOpen(false)}>
               Login
             </Link>
           )}
