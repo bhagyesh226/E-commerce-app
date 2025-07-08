@@ -155,7 +155,14 @@ const summaryApi = {
 
         }
 
-    }
+    },
+    deleteProduct: (id) => ({
+        url: `${backenDomin}/api/deleteproduct/${id}`,
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json"
+        }
+    }),
 
 }
 
