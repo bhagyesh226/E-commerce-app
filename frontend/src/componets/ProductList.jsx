@@ -1,8 +1,8 @@
-
 import React, { useEffect, useState } from 'react';
-import summaryApi from '../../apiStore/api';
-import { MdEdit } from "react-icons/md";
+import { MdEdit, MdDeleteOutline } from "react-icons/md";
 import EditProduct from './EditProduct';
+import { toast } from 'react-toastify';
+import summaryApi from '../../apiStore/api';
 
 function ProductList() {
     const [products, setProducts] = useState([]);
@@ -11,9 +11,9 @@ function ProductList() {
 
     const fetchProducts = async () => {
         try {
-            const response = await fetch(summaryApi.getProduct.url, {
-                method: summaryApi.getProduct.method,
-                headers: summaryApi.getProduct.headers,
+            const response = await fetch(summaryApi.getproduct.url, {
+                method: summaryApi.getproduct.method,
+                headers: summaryApi.getproduct.headers,
                 credentials: "include"
             });
             const data = await response.json();
@@ -29,16 +29,42 @@ function ProductList() {
         }
     };
 
+    const handleDeleteProduct = async (productId) => {
+        try {
+            const response = await fetch(summaryApi.deleteProduct(productId).url, {
+                method: summaryApi.deleteProduct(productId).method,
+                headers: summaryApi.deleteProduct(productId).headers,
+                credentials: "include"
+            });
+
+            const data = await response.json();
+
+            if (data.success) {
+                setProducts(prev => prev.filter(p => p._id !== productId));
+                toast.success("Product deleted successfully", {
+                    position: "top-right",
+                    autoClose: 2000,
+                    theme: "colored"
+                });
+            } else {
+                toast.error(data.message || "Failed to delete product");
+            }
+        } catch (error) {
+            console.error("Delete error:", error);
+            toast.error("Server error while deleting product");
+        }
+    };
+
     useEffect(() => {
         fetchProducts();
     }, []);
 
-    if (loading) return <p>Loading products...</p>;
+    if (loading) return <p className="text-center py-10 text-blue-600 font-medium">Loading products...</p>;
 
     return (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             {products.length === 0 ? (
-                <p>No products found.</p>
+                <p className="text-center text-gray-500">No products found.</p>
             ) : (
                 products.map((product) => (
                     <div
@@ -63,23 +89,31 @@ function ProductList() {
                             <span className="line-through text-gray-400 text-sm">₹{product.price}</span>
                         </div>
 
-                        {/* Edit Icon (Shown on Hover) */}
+                        {/* Edit Button (responsive hover display) */}
                         <div
-                            className="absolute bottom-2 right-2 bg-white border p-1 rounded-full shadow-md 
-             md:hidden block cursor-pointer hover:bg-gray-100"
+                            className="absolute bottom-2 right-10 bg-white border p-1 rounded-full shadow-md 
+                            md:hidden block cursor-pointer hover:bg-gray-100"
                             onClick={() => setEditProduct(product)}
                         >
-                            <MdEdit size={20} />
+                            <MdEdit size={20} className="text-blue-600" />
                         </div>
 
                         <div
-                            className="absolute bottom-2 right-2 bg-white border p-1 rounded-full shadow-md 
-             hidden md:group-hover:block cursor-pointer hover:bg-gray-100"
+                            className="absolute bottom-2 right-10 bg-white border p-1 rounded-full shadow-md 
+                            hidden md:group-hover:block cursor-pointer hover:bg-gray-100"
                             onClick={() => setEditProduct(product)}
                         >
-                            <MdEdit size={20} />
+                            <MdEdit size={20} className="text-blue-600" />
                         </div>
 
+                        {/* Delete Button (always visible) */}
+                        <div
+                            className="absolute bottom-2 right-2 bg-white border p-1 rounded-full shadow-md 
+                            cursor-pointer hover:bg-gray-100"
+                            onClick={() => handleDeleteProduct(product._id)}
+                        >
+                            <MdDeleteOutline size={20} className="text-red-600" />
+                        </div>
                     </div>
                 ))
             )}
