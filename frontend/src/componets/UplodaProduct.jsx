@@ -96,8 +96,6 @@ function UplodaProduct() {
             ...prev,
             image: [...updatedImages]
         }));
-
-
     }
 
     return (
