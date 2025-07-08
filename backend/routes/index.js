@@ -40,7 +40,7 @@ router.get('/addToCartViewProduct',authtoken,addToCartViewPriduct);
 router.post('/updataAddToCartProduct',authtoken,updataAddToCartPeoduct);
 router.post('/deleteAddToCartProduct',authtoken,deleteAddToCartProduct)
 router.get('/searchProductData',searchProductData);
-router.delete('/deleteproduct/:id',authtoken,deleteProduct);
+router.delete('/deleteproduct/:id',authtoken,deleteProduct)
 
 
 
