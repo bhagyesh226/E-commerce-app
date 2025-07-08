@@ -19,7 +19,6 @@ const deleteAddToCartProduct = require('../controller/deleteAddToCartProduct.js'
 const searchProductData = require('../controller/searchProductData.js');
 const countAddToCartProduct = require('../controller/countAddToCartProduct.js');
 const updataProduct = require('../controller/UpdataProduct.js');
-const deleteProduct = require('../controller/deleteProduct.js');
 
 
 router.post('/signup', userSignup);
@@ -40,7 +39,6 @@ router.get('/addToCartViewProduct',authtoken,addToCartViewPriduct);
 router.post('/updataAddToCartProduct',authtoken,updataAddToCartPeoduct);
 router.post('/deleteAddToCartProduct',authtoken,deleteAddToCartProduct)
 router.get('/searchProductData',searchProductData);
-router.delete('/deleteproduct/:id',authtoken,deleteProduct)
 
 
 
