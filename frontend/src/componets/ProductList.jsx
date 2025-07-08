@@ -11,9 +11,9 @@ function ProductList() {
 
     const fetchProducts = async () => {
         try {
-            const response = await fetch(summaryApi.getproduct.url, {
-                method: summaryApi.getproduct.method,
-                headers: summaryApi.getproduct.headers,
+            const response = await fetch(summaryApi.getProduct.url, {
+                method: summaryApi.getProduct.method,
+                headers: summaryApi.getProduct.headers,
                 credentials: "include"
             });
             const data = await response.json();
